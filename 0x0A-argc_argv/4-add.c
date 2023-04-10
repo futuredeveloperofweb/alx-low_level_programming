@@ -10,6 +10,7 @@ int main(int argc, char *argv[])
 {
 	int i, n, sum = 0;
 	char *flag;
+
 	if (argc > 1)
 	{
 		for (i = 1; argv[i]; i++)
