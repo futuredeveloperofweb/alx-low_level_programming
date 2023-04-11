@@ -19,33 +19,30 @@ int main(int argc, char *argv[])
 		printf("Error\n");
 		return (1);
 	}
-	else
+	total = strtol(argv[1], &p, 10);
+	count = 0;
+	if (!*p)
 	{
-		if (atoi(argv[1]) < 0)
+		while (total > 1)
 		{
-			printf("0\n");
-		}
-		else
-		{
-			total = strtol(argv[1], &p, 10);
-			count = 0;
-			if (!*p)
+			for (i = 0; i < sizeof(cent[i]); i++)
 			{
-				while (total > 1)
+				if (total >= cent[i])
 				{
-					for (i = 0; i < sizeof(cent[i]); i++)
-					{
-						if (total >= cent[i])
-						{
-							count += (total / cent[i]);
-							total = (total % cent[i]);
-						}
-					}
+					count += (total / cent[i]);
+					total = (total % cent[i]);
 				}
 			}
-			if (total == 1)
-				count++;
 		}
+		if (total == 1)
+			count++;
+		else
+		{
+			printf("Error\n");
+			return (1);
+		}
+		printf("%d\n", count);
+		return (0);
 	}
 	return (0);
 }
