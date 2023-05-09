@@ -35,7 +35,7 @@ e_ident[index] != 'E' &&
 e_ident[index] != 'L' &&
 e_ident[index] != 'F')
 {
-dprintf(STDERR_FILENO, "Error: Not an ELF filein");
+dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
 exit(98);
 }
 }
@@ -55,7 +55,7 @@ for (index = 0; index < EI_NIDENT; index++)
 {
 printf("%02x", e_ident[index]);
 if (index == EI_NIDENT - 1)
-printf("ln");
+printf("\n");
 else
 printf(" ");
 }
@@ -77,7 +77,7 @@ case ELFCLASS32:
 printf("ELF32\n");
 break;
 case ELFCLASS64:
-printf("ELF64in");
+printf("ELF64\n");
 break;
 default:
 printf("<unknown: %x>\n", e_ident[EI_CLASS]);
@@ -97,10 +97,10 @@ case ELFDATANONE:
 printf("none\n");
 break;
 case ELFDATA2LSB:
-printf("2's complement, littile endian\n");
+printf("2's complement, little endian\n");
 break;
 case ELFDATA2MSB:
-printf("2's complement, big endianin");
+printf("2's complement, big endian\n");
 break;
 default:
 printf("<unknown: %x>\n", e_ident[EI_CLASS]);
@@ -113,15 +113,14 @@ printf("<unknown: %x>\n", e_ident[EI_CLASS]);
  */
 void print_version(unsigned char *e_ident)
 {
-printf(" Version: %d",
-e_ident[EI_VERSION]);
+printf(" Version: %d", e_ident[EI_VERSION]);
 switch (e_ident[EI_VERSION])
 {
 case EV_CURRENT:
 printf(" (current)\n");
 break;
 default:
-printf("lin");
+printf("\n");
 break;
 }
 }
@@ -136,34 +135,34 @@ printf(" OS/ABI: ");
 switch (e_ident[EI_OSABI])
 {
 case ELFOSABI_NONE:
-printf("UNIX - System VIn");
+printf("UNIX - System V\n");
 break;
 case ELFOSABI_HPUX:
-printf("UNIX - HP-UXIn");
+printf("UNIX - HP-UX\n");
 break;
 case ELFOSABI_NETBSD:
-printf("UNIX - NetBSDIn");
+printf("UNIX - NetBSD\n");
 break;
 case ELFOSABI_LINUX:
-printf("UNIX - Linuxin");
+printf("UNIX - Linux\n");
 break;
 case ELFOSABI_SOLARIS:
-printf("UNIX - Solarisin");
+printf("UNIX - Solaris\n");
 break;
 case ELFOSABI_IRIX:
-printf("UNIX - IRIXIn");
+printf("UNIX - IRIX\n");
 break;
 case ELFOSABI_FREEBSD:
-printf("UNIX - FreeBSDIn");
+printf("UNIX - FreeBSD\n");
 break;
 case ELFOSABI_TRU64:
 printf("UNIX - TRU64\n");
 break;
 case ELFOSABI_ARM:
-printf("ARMin");
+printf("ARM\n");
 break;
 case ELFOSABI_STANDALONE:
-printf("Standalone Appln");
+printf("Standalone App\n");
 break;
 default:
 printf("<unknown: %x>\n", e_ident[EI_OSABI]);
@@ -205,10 +204,10 @@ case ET_DYN:
 printf("DYN (Shared object file)\n");
 break;
 case ET_CORE:
-printf("CORE (Core file)ln");
+printf("CORE (Core file)\n");
 break;
 default:
-printf("e_type");
+printf("<unknown: %x>\n", e_type);
 }
 }
 
@@ -219,18 +218,18 @@ printf("e_type");
  */
 void print_entry(unsigned long int e_entry, unsigned char *e_ident)
 {
-printf("Etry point adress: ");
+printf("Entry point address: ");
 if (e_ident[EI_DATA] == ELFDATA2MSB)
 {
 e_entry = ((e_entry << 8) & 0xFF00FF00) |
-((e_entry >> 8) & 0xFF00FF); e_entry = (e_entry << 16) |
-(e_entry >> 16);
+((e_entry >> 8) & 0xFF00FF);
+e_entry = (e_entry << 16) | (e_entry >> 16);
 }
 
 if (e_ident[EI_CLASS] == ELFCLASS32)
 printf("%#x\n", (unsigned int)e_entry);
 else
-printf("%#lxin", e_entry);
+printf("%#lx\n", e_entry);
 }
 
 /**
