@@ -2,17 +2,22 @@
 
 /**
  * binary_to_uint - convert a binary to an integer
- * @a: a pointer to the given string
+ * @str: a pointer to the given string
  * Return: the converted integer, 0 otherwize
  */
-unsigned int binary_to_uint(const char *b)
+unsigned int binary_to_uint(const char *str)
 {
 	int i = 0;
+	unsigned int x = 0;
 
-	if (!b)
+	if (!str)
 		return (0);
-	while (b[i] != '\0')
+	while (str[i])
 	{
-		if (b[i] != 48 && b[i] != 49)
+		if (str[i] != 48 && str[i] != 49)
 			return (0);
-
+		x = x * 2 + (str[i] - '0');
+		i++;
+	}
+	return (x);
+}
