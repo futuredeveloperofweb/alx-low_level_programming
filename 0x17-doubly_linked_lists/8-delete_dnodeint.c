@@ -8,18 +8,18 @@
  */
 int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 {
-	dlistint_t *current;
-	unsigned int i = 0;
+	dlistint_t *current = *head;
 
 	if (*head == NULL)
 		return (-1);
-	current = *head;
+
 	for (; index != 0; index--)
 	{
 		if (current == NULL)
 			return (-1);
 		current = current->next;
 	}
+
 	if (current == *head)
 	{
 		*head = current->next;
