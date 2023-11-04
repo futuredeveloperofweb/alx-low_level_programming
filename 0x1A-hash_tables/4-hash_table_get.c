@@ -11,9 +11,9 @@ char *hash_table_get(const hash_table_t *ht, const char *key)
 	unsigned long int i;
 	hash_node_t *current;
 
-	if (!ht || !key)
+	if (!ht || !ht->array || !ht->size || !key || !strlen(key))
 		return (NULL);
-	i = hash_djb2((unsigned char *)key) % ht->size;
+	i = key_index((const unsigned char *)key, ht->size);
 	current = ht->array[i];
 
 	while (current)

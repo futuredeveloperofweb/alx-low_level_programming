@@ -2,7 +2,7 @@
 
 /**
  * hash_table_delete - a function that deletes a hash table.
- * @ht:  is the hash table
+ * @ht: is the hash table
  */
 void hash_table_delete(hash_table_t *ht)
 {
@@ -13,7 +13,7 @@ void hash_table_delete(hash_table_t *ht)
 		return;
 	for (i = 0; i < ht->size; i++)
 	{
-		while (!ht->array[i])
+		while (ht->array[i])
 		{
 			next = ht->array[i]->next;
 			free(ht->array[i]->key);
