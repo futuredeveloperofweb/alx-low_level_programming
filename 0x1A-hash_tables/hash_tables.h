@@ -87,7 +87,8 @@ void hash_table_print(const hash_table_t *ht);
 
 void hash_table_delete(hash_table_t *ht);
 
-/* the advanced tasks functions */
+
+
 shash_table_t *shash_table_create(unsigned long int size);
 
 int shash_table_set(shash_table_t *ht, const char *key, const char *value);
@@ -99,5 +100,9 @@ void shash_table_print(const shash_table_t *ht);
 void shash_table_print_rev(const shash_table_t *ht);
 
 void shash_table_delete(shash_table_t *ht);
+
+void add_to_sorted_list(shash_table_t *ht, shash_node_t *node);
+
+shash_node_t *shash_make_node(const char *key, const char *value);
 
 #endif
