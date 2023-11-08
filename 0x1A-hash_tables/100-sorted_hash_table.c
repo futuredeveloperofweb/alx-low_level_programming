@@ -54,6 +54,7 @@ shash_node_t *shash_make_node(const char *key, const char *value)
 		free(new_node->key);
 		free(new_node);
 		return (NULL);
+	}
 	new_node->next = NULL;
 	new_node->sprev = NULL;
 	new_node->snext = NULL;
@@ -69,7 +70,7 @@ void add_to_sorted_list(shash_table_t *ht, shash_node_t *node)
 {
 	shash_node_t *tp;
 
-	if (!ht->array && !ht->stail)
+	if (!ht->shead && !ht->stail)
 	{
 		ht->shead = node;
 		ht->stail = node;
@@ -140,7 +141,7 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
  * shash_table_get -  that retrieves a value associated with a key
  * @ht: is the hash table you want to look into
  * @key: is the key you are looking for
- * Return: the value associated with the element, or NULL if key couldn’t be found
+ * Return: the value associated with the element, NULL if not found
  */
 char *shash_table_get(const shash_table_t *ht, const char *key)
 {
@@ -188,6 +189,7 @@ void shash_table_print(const shash_table_t *ht)
 /**
  * shash_table_print_rev - print the hash table in reverse
  * @ht: the hash table
+ * Return: nothing
  */
 void shash_table_print_rev(const shash_table_t *ht)
 {
@@ -212,6 +214,7 @@ void shash_table_print_rev(const shash_table_t *ht)
 /**
  * shash_table_delete - delete the hash table
  * @ht: the hash table
+ * Return: nothing
  */
 void shash_table_delete(shash_table_t *ht)
 {
