@@ -3,7 +3,7 @@
 that returns the perimeter of the island described in grid'''
 
 
-def def island_perimeter(grid):
+def island_perimeter(grid):
     '''returns the perimeter of the island described in grid
     Args:
         grid (list): a list of list of integers
